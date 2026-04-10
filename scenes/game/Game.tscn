@@ -5,24 +5,54 @@
 [ext_resource type="PackedScene" uid="uid://dh2hrtb0x311i" path="res://scenes/pieces/Piece.tscn" id="3_vrspl"]
 
 [node name="Game" type="Node2D" unique_id=590872528]
+position = Vector2(563, 318)
+scale = Vector2(1.0334903, 1.0482454)
 metadata/_edit_vertical_guides_ = [-709.0]
 
 [node name="BoardView" type="Node2D" parent="." unique_id=1680073741]
+position = Vector2(10, -5)
 
 [node name="Sprite2D" type="Sprite2D" parent="BoardView" unique_id=474226290]
-position = Vector2(573, 325.00003)
-scale = Vector2(0.74348956, 0.6445313)
+position = Vector2(8.122013, 24.29496)
+scale = Vector2(0.732914, 0.6283301)
 texture = ExtResource("1_klkup")
 
 [node name="PiecesView" type="Node2D" parent="." unique_id=1717388143]
-position = Vector2(173, 185)
+position = Vector2(-502.1818, -265.20508)
 
 [node name="GameController" type="Control" parent="." unique_id=1930067014]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -8.7083435
+offset_top = -32.435165
+offset_right = 47.41217
+offset_bottom = 7.5648346
 script = ExtResource("2_m44fu")
 piece_scene = ExtResource("3_vrspl")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1202893039]
+
+[node name="WinnerLabel" type="Label" parent="UI" unique_id=141876182]
+anchors_preset = -1
+anchor_left = 0.351
+anchor_top = 0.076000005
+anchor_right = 0.351
+anchor_bottom = 0.076000005
+offset_left = 94.64798
+offset_top = -11.248005
+offset_right = 269.64798
+offset_bottom = 11.751995
+text = "FELICIDADES GANASTE"
+
+[node name="RestartButton" type="Button" parent="UI" unique_id=2001779268]
+anchors_preset = -1
+anchor_left = 0.10300001
+anchor_top = 0.29200003
+anchor_right = 0.116000004
+anchor_bottom = 0.29200003
+offset_left = 396.344
+offset_top = 379.784
+offset_right = 518.368
+offset_bottom = 441.784
+text = "VOLVER A JUGAR
+"
