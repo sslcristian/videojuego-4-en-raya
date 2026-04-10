@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dh2hrtb0x311i"]
+
+[ext_resource type="Texture2D" uid="uid://cdom3y25a8wc3" path="res://assets/pieces/piece.png" id="1_ypbir"]
+
+[node name="Piece" type="Node2D" unique_id=291330190]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1265633295]
+position = Vector2(443, 336)
+texture = ExtResource("1_ypbir")
+hframes = 6
