@@ -1,20 +1,28 @@
 [gd_scene format=3 uid="uid://c4d33jx4gp4e3"]
 
 [ext_resource type="Texture2D" uid="uid://ba2sn68ofp0aj" path="res://assets/board/tablero.png" id="1_klkup"]
+[ext_resource type="Script" uid="uid://dab2qw8q0o71v" path="res://scripts/controller/game_controller.gd" id="2_m44fu"]
+[ext_resource type="PackedScene" uid="uid://dh2hrtb0x311i" path="res://scenes/pieces/Piece.tscn" id="3_vrspl"]
 
 [node name="Game" type="Node2D" unique_id=590872528]
+metadata/_edit_vertical_guides_ = [-709.0]
 
 [node name="BoardView" type="Node2D" parent="." unique_id=1680073741]
 
 [node name="Sprite2D" type="Sprite2D" parent="BoardView" unique_id=474226290]
+position = Vector2(573, 325.00003)
+scale = Vector2(0.74348956, 0.6445313)
 texture = ExtResource("1_klkup")
 
 [node name="PiecesView" type="Node2D" parent="." unique_id=1717388143]
+position = Vector2(173, 185)
 
 [node name="GameController" type="Control" parent="." unique_id=1930067014]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_m44fu")
+piece_scene = ExtResource("3_vrspl")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1202893039]
