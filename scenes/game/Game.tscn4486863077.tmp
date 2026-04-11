@@ -12,10 +12,47 @@ metadata/_edit_vertical_guides_ = [-709.0]
 [node name="BoardView" type="Node2D" parent="." unique_id=1680073741]
 position = Vector2(10, -5)
 
-[node name="Sprite2D" type="Sprite2D" parent="BoardView" unique_id=740104980]
-position = Vector2(4.513916, 12.631805)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("3_7qcb4")
+[node name="ColorRect" type="ColorRect" parent="BoardView" unique_id=1978374286]
+offset_left = -229.64404
+offset_top = -184.84103
+offset_right = -174.49115
+offset_bottom = 239.67789
+
+[node name="ColorRect2" type="ColorRect" parent="BoardView" unique_id=2110345989]
+offset_left = -151.26886
+offset_top = -185.795
+offset_right = -96.11586
+offset_bottom = 238.72401
+
+[node name="ColorRect3" type="ColorRect" parent="BoardView" unique_id=361059068]
+offset_left = -73.86125
+offset_top = -186.74898
+offset_right = -18.708237
+offset_bottom = 237.77003
+
+[node name="ColorRect4" type="ColorRect" parent="BoardView" unique_id=354367388]
+offset_left = 2.5787425
+offset_top = -185.795
+offset_right = 57.731743
+offset_bottom = 238.72401
+
+[node name="ColorRect5" type="ColorRect" parent="BoardView" unique_id=1537394280]
+offset_left = 80.953926
+offset_top = -186.74898
+offset_right = 136.10693
+offset_bottom = 237.77003
+
+[node name="ColorRect6" type="ColorRect" parent="BoardView" unique_id=1314658267]
+offset_left = 157.39392
+offset_top = -185.795
+offset_right = 212.5469
+offset_bottom = 238.72404
+
+[node name="ColorRect7" type="ColorRect" parent="BoardView" unique_id=877955189]
+offset_left = 235.76912
+offset_top = -186.74896
+offset_right = 290.92212
+offset_bottom = 237.77005
 
 [node name="PiecesView" type="Node2D" parent="." unique_id=1717388143]
 position = Vector2(9.675934, -8.585785)
@@ -139,11 +176,11 @@ offset_right = 958.68
 offset_bottom = 154.0
 
 [node name="ROTAR" type="Button" parent="UI" unique_id=2052848248]
-offset_left = 962.0
+offset_left = 966.0
 offset_top = 485.0
-offset_right = 1119.0
+offset_right = 1110.0
 offset_bottom = 555.0
-text = "CAMBIO DE TURNO
+text = "ROTAR
 "
 
 [node name="DESPLAZAR" type="Button" parent="UI" unique_id=2025302532]
@@ -166,8 +203,6 @@ offset_top = 132.0
 offset_right = 80.0
 offset_bottom = 155.0
 
-[node name="TimerLabel" type="Label" parent="UI" unique_id=11818128]
-offset_left = 995.0
-offset_top = 581.0
-offset_right = 1029.0
-offset_bottom = 604.0
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=740104980]
+position = Vector2(14.513924, 7.6318)
+texture = ExtResource("3_7qcb4")
