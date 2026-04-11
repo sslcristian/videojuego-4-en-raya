@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c4d33jx4gp4e3"]
 
-[ext_resource type="Texture2D" uid="uid://ba2sn68ofp0aj" path="res://assets/board/tablero.png" id="1_klkup"]
 [ext_resource type="Script" uid="uid://dab2qw8q0o71v" path="res://scripts/controller/game_controller.gd" id="2_m44fu"]
 [ext_resource type="PackedScene" uid="uid://dh2hrtb0x311i" path="res://scenes/pieces/Piece.tscn" id="3_vrspl"]
 
@@ -12,13 +11,8 @@ metadata/_edit_vertical_guides_ = [-709.0]
 [node name="BoardView" type="Node2D" parent="." unique_id=1680073741]
 position = Vector2(10, -5)
 
-[node name="Sprite2D" type="Sprite2D" parent="BoardView" unique_id=474226290]
-position = Vector2(8.122013, 24.29496)
-scale = Vector2(0.732914, 0.6283301)
-texture = ExtResource("1_klkup")
-
 [node name="PiecesView" type="Node2D" parent="." unique_id=1717388143]
-position = Vector2(-502.1818, -265.20508)
+position = Vector2(9.675934, -8.585785)
 
 [node name="GameController" type="Control" parent="." unique_id=1930067014]
 layout_mode = 3
@@ -32,27 +26,116 @@ piece_scene = ExtResource("3_vrspl")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1202893039]
 
-[node name="WinnerLabel" type="Label" parent="UI" unique_id=141876182]
-anchors_preset = -1
-anchor_left = 0.351
-anchor_top = 0.076000005
-anchor_right = 0.351
-anchor_bottom = 0.076000005
-offset_left = 94.64798
-offset_top = -11.248005
-offset_right = 269.64798
-offset_bottom = 11.751995
-text = "FELICIDADES GANASTE"
-
 [node name="RestartButton" type="Button" parent="UI" unique_id=2001779268]
 anchors_preset = -1
 anchor_left = 0.10300001
 anchor_top = 0.29200003
 anchor_right = 0.116000004
 anchor_bottom = 0.29200003
-offset_left = 396.344
-offset_top = 379.784
-offset_right = 518.368
-offset_bottom = 441.784
+offset_left = 397.344
+offset_top = 388.784
+offset_right = 519.368
+offset_bottom = 450.784
 text = "VOLVER A JUGAR
+"
+
+[node name="Button" type="Button" parent="UI" unique_id=1948183427]
+offset_left = 334.0
+offset_top = 57.0
+offset_right = 394.0
+offset_bottom = 109.0
+text = "1"
+
+[node name="Button2" type="Button" parent="UI" unique_id=233553811]
+offset_left = 416.0
+offset_top = 57.0
+offset_right = 476.0
+offset_bottom = 109.0
+text = "2"
+
+[node name="Button3" type="Button" parent="UI" unique_id=395617547]
+offset_left = 496.0
+offset_top = 57.0
+offset_right = 556.0
+offset_bottom = 109.0
+text = "3"
+
+[node name="Button4" type="Button" parent="UI" unique_id=353628286]
+offset_left = 575.0
+offset_top = 57.0
+offset_right = 635.0
+offset_bottom = 109.0
+text = "4"
+
+[node name="Button5" type="Button" parent="UI" unique_id=1345544523]
+offset_left = 655.0
+offset_top = 57.0
+offset_right = 715.0
+offset_bottom = 109.0
+text = "5"
+
+[node name="Button6" type="Button" parent="UI" unique_id=648314601]
+offset_left = 736.0
+offset_top = 57.0
+offset_right = 796.0
+offset_bottom = 109.0
+text = "6"
+
+[node name="Button7" type="Button" parent="UI" unique_id=1670628324]
+offset_left = 816.0
+offset_top = 57.0
+offset_right = 876.0
+offset_bottom = 109.0
+text = "7"
+
+[node name="WinnerLabel" type="Label" parent="UI" unique_id=1586986229]
+offset_left = 42.0
+offset_top = 42.0
+offset_right = 285.0
+offset_bottom = 117.0
+
+[node name="PODER 1" type="Button" parent="UI" unique_id=1375134091]
+offset_left = 966.0
+offset_top = 378.0
+offset_right = 1110.0
+offset_bottom = 448.0
+text = "EXPLOSIVA"
+
+[node name="PODER 2" type="Button" parent="UI" unique_id=208880173]
+offset_left = 966.0
+offset_top = 275.0
+offset_right = 1110.0
+offset_bottom = 343.0
+text = "INVERTIR"
+
+[node name="PODER 3" type="Button" parent="UI" unique_id=1391705843]
+anchors_preset = -1
+anchor_right = 0.014
+anchor_bottom = 0.028
+offset_left = 966.0
+offset_top = 172.0
+offset_right = 1093.872
+offset_bottom = 221.856
+text = "BLOQUEAR"
+
+[node name="TurnLabel" type="Label" parent="UI" unique_id=607740737]
+offset_left = 963.0
+offset_top = 25.0
+offset_right = 1064.0
+offset_bottom = 78.0
+
+[node name="RotationsLeftLabel" type="Label" parent="UI" unique_id=1342045551]
+anchors_preset = -1
+anchor_right = 0.035
+offset_left = 959.0
+offset_top = 131.0
+offset_right = 958.68
+offset_bottom = 154.0
+
+[node name="RotateButton" type="Button" parent="UI" unique_id=2052848248]
+offset_left = 966.0
+offset_top = 485.0
+offset_right = 1110.0
+offset_bottom = 555.0
+text = "ROTAR
 "
