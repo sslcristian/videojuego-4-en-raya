@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dh8hhjdxyseu8"
+path="res://.godot/imported/Minecraft TNT Explosion - Sound Effect (HD).wav-35031ab3760fe8678c1849546e04af67.sample"
+
+[deps]
+
+source_file="res://assets/Audio/Minecraft TNT Explosion - Sound Effect (HD).wav"
+dest_files=["res://.godot/imported/Minecraft TNT Explosion - Sound Effect (HD).wav-35031ab3760fe8678c1849546e04af67.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

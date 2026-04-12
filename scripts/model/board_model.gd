@@ -133,28 +133,19 @@ func invert_gravity():
 
 
 # -------------------------------
-# 🔃 ROTAR TABLERO (90°)
+# 🔃 ROTAR TABLERO (180° ✅ ARREGLADO)
 # -------------------------------
 func rotate_board():
 
 	var new_board = []
 
-	for c in range(COLS):
-		var new_row = []
-		for r in range(ROWS-1, -1, -1):
-			new_row.append(board[r][c])
-		new_board.append(new_row)
-
-	board = []
-
-	for r in range(ROWS):
+	for r in range(ROWS-1, -1, -1):
 		var row = []
-		for c in range(COLS):
-			if r < new_board.size() and c < new_board[0].size():
-				row.append(new_board[r][c])
-			else:
-				row.append(0)
-		board.append(row)
+		for c in range(COLS-1, -1, -1):
+			row.append(board[r][c])
+		new_board.append(row)
+
+	board = new_board
 
 	apply_gravity()
 
@@ -178,7 +169,7 @@ func shift_column(column):
 
 
 # -------------------------------
-# 🔁 REUBICAR FICHA (FIX PRO 🔥)
+# 🔁 REUBICAR FICHA
 # -------------------------------
 func get_top_piece(column, player):
 
@@ -187,7 +178,6 @@ func get_top_piece(column, player):
 
 		if val != 0 and get_player_from_cell(val) == player:
 
-			# SOLO verifica si es la ficha superior (NO la borra)
 			if gravity == 1:
 				if r == 0 or board[r-1][column] == 0:
 					return {"row":r,"col":column,"value":val}
@@ -207,7 +197,6 @@ func move_piece(piece_data, new_column):
 	var old_col = piece_data["col"]
 	var val = piece_data["value"]
 
-	# 🔴 borrar ficha original (AHORA SÍ, en el momento correcto)
 	board[old_row][old_col] = 0
 
 	if gravity == 1:

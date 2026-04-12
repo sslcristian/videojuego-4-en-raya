@@ -13,8 +13,14 @@ const COLS = 7
 @onready var restart_button = $"../UI/RestartButton"
 @onready var turn_label = $"../UI/TurnLabel"
 @onready var message_label = $"../UI/MessageLabel"
-@onready var timer_label = $"../UI/TimerLabel" # ⏱ TIMER
+@onready var timer_label = $"../UI/TimerLabel"
 
+# 🔊 SONIDOS
+@onready var sfx_drop = $"../BoardView/Audio/DropSound"
+@onready var sfx_explosion = $"../BoardView/Audio/ExplosionSound"
+@onready var sfx_click = $"../BoardView/Audio/ClickSound"
+@onready var sfx_timer = $"../BoardView/Audio/TimerSound"
+@onready var sfx_victory = $"../BoardView/Audio/Victory"
 # PODERES
 @onready var btn_bloquear = $"../UI/BLOQUEAR"
 @onready var btn_invertir = $"../UI/INVERTIR"
@@ -23,7 +29,6 @@ const COLS = 7
 @onready var btn_desplazar = $"../UI/DESPLAZAR"
 @onready var btn_reubicar = $"../UI/REUBICAR"
 
-# BOTONES COLUMNAS
 var column_buttons = []
 
 var model = BoardModel.new()
@@ -73,7 +78,7 @@ func _ready():
 	btn_rotar.pressed.connect(func(): use_power("rotar"))
 
 	update_turn_label()
-	start_turn_timer() # ⏱ INICIAR TIMER
+	start_turn_timer()
 
 # -------------------------------
 func _process(delta):
@@ -92,12 +97,17 @@ func _process(delta):
 	else:
 		timer_label.text = "Tiempo: " + str(int(turn_time))
 
+		# 🔊 sonido cuando quedan 5 segundos
+		if int(turn_time) == 5 and not sfx_timer.playing:
+			sfx_timer.play()
+
 # -------------------------------
 func start_turn_timer():
 	turn_time = 30
 	timer_running = true
 
 # -------------------------------
+
 func conectar_botones_columnas():
 
 	for child in ui_layer.get_children():
@@ -133,6 +143,8 @@ func show_message(text):
 # -------------------------------
 func select_power(power):
 
+	sfx_click.play(2.30)
+
 	if used_powers[current_player].has(power):
 		show_message("Ya usaste este poder")
 		return
@@ -166,11 +178,13 @@ func _on_column_button_pressed(column):
 # -------------------------------
 func use_power(column = -1):
 
+	sfx_click.play()
+
 	match selected_power:
 
 		"bloquear":
 			blocked_column = column
-			block_turns = 2
+			block_turns = 4
 			block_owner = current_player
 			update_block_visual()
 
@@ -237,30 +251,16 @@ func use_power(column = -1):
 	selected_power = ""
 	end_turn()
 
-# -------------------------------
 func animar_rotacion():
 	can_place_piece = false
+
 	var tween = create_tween()
 	tween.tween_property(board_view, "rotation_degrees", 90, 0.4)
+
 	await tween.finished
+
 	board_view.rotation_degrees = 0
 	can_place_piece = true
-
-# -------------------------------
-func auto_rotate_board():
-
-	show_message("¡TABLERO ROTADO!")
-
-	await animar_rotacion()
-
-	var new_board = []
-	for r in range(ROWS):
-		new_board.append(model.board[ROWS - 1 - r])
-
-	model.board = new_board
-	await redraw_board()
-
-# -------------------------------
 func check_after_move(result):
 
 	await handle_explosiva(result)
@@ -278,6 +278,9 @@ func handle_explosiva(result):
 	if not result.has("explosive"):
 		return
 	
+	# 🔊 EXPLOSIÓN
+	sfx_explosion.play(3.8)
+
 	model.explode(result.row, result.col)
 
 	await get_tree().create_timer(0.15).timeout
@@ -297,7 +300,7 @@ func check_full_board():
 # -------------------------------
 func end_turn():
 
-	timer_running = false # ⏱ detener timer
+	timer_running = false
 
 	if gravity_temp_inverted:
 		model.invert_gravity()
@@ -312,15 +315,28 @@ func end_turn():
 	update_turn_label()
 	update_block_visual()
 
+	# 🔢 CONTADOR DE TURNOS
 	turn_counter += 1
+
+	# 🔄 ROTACIÓN AUTOMÁTICA CADA 4 TURNOS
 	if turn_counter >= 4:
 		turn_counter = 0
-		await auto_rotate_board()
+
+		can_place_piece = false
+
+		# animación (la que ya tienes)
+		await animar_rotacion()
+
+		# rotar tablero (usa tu BoardModel)
+		model.rotate_board()
+
+		# redibujar con gravedad aplicada
+		await redraw_board()
 
 	await get_tree().create_timer(0.2).timeout
 	can_place_piece = true
 
-	start_turn_timer() # ⏱ reiniciar timer
+	start_turn_timer()
 
 # -------------------------------
 func redraw_board():
@@ -380,18 +396,21 @@ func spawn_piece_animated(data):
 	tween.tween_property(piece, "global_position:y", pos_final.y - 15, 0.1)
 	tween.tween_property(piece, "global_position:y", pos_final.y, 0.08)
 
+	# 🔊 sonido caída
+	sfx_drop.play(1.93)
+
 # -------------------------------
 func show_victory(winner):
 
 	game_over = true
-	timer_running = false # ⏱ detener timer
-
+	timer_running = false
 	can_place_piece = false
 
 	last_loser = 3 - winner
-
+   
 	winner_label.text = "GANADOR: JUGADOR " + str(winner)
 	winner_label.visible = true
+	sfx_victory.play()
 	restart_button.visible = true
 
 # -------------------------------
@@ -428,4 +447,4 @@ func reiniciar_juego():
 
 	update_turn_label()
 
-	start_turn_timer() # ⏱ reiniciar timer
+	start_turn_timer()
