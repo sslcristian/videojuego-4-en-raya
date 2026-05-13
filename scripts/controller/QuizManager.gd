@@ -13,33 +13,82 @@ signal answered(correct)
 var current_question = {}
 var answered_already = false
 
+# respuesta correcta REAL
+var correct_answer_text = ""
+
+# opciones mezcladas
+var shuffled_options = []
+
 func _ready():
+
+	randomize()
 
 	visible = false
 
-	button_1.pressed.connect(func(): check_answer(0))
-	button_2.pressed.connect(func(): check_answer(1))
-	button_3.pressed.connect(func(): check_answer(2))
+	button_1.pressed.connect(func(): check_answer(button_1.text))
+	button_2.pressed.connect(func(): check_answer(button_2.text))
+	button_3.pressed.connect(func(): check_answer(button_3.text))
+
 
 func show_question(question_data):
 
 	visible = true
+
 	answered_already = false
 
 	current_question = question_data
 
 	question_label.text = question_data.question
+
 	feedback_label.text = ""
 
-	button_1.text = question_data.options[0]
-	button_2.text = question_data.options[1]
-	button_3.text = question_data.options[2]
+	# -----------------------------
+	# COPIAR OPCIONES
+	# -----------------------------
+	shuffled_options = question_data.options.duplicate()
 
+	# -----------------------------
+	# MEZCLAR OPCIONES
+	# -----------------------------
+	shuffled_options.shuffle()
+
+	# -----------------------------
+	# GUARDAR RESPUESTA CORRECTA
+	# -----------------------------
+	correct_answer_text = question_data.options[
+		question_data.answer
+	]
+
+	# -----------------------------
+	# ASIGNAR TEXTO A BOTONES
+	# -----------------------------
+	button_1.text = shuffled_options[0]
+	button_2.text = shuffled_options[1]
+	button_3.text = shuffled_options[2]
+
+	# -----------------------------
+	# ACTIVAR BOTONES
+	# -----------------------------
 	button_1.disabled = false
 	button_2.disabled = false
 	button_3.disabled = false
 
-func check_answer(index):
+	# -----------------------------
+	# EFECTO VISUAL
+	# -----------------------------
+	panel.scale = Vector2(0.8, 0.8)
+
+	var tween = create_tween()
+
+	tween.tween_property(
+		panel,
+		"scale",
+		Vector2(1,1),
+		0.15
+	)
+
+
+func check_answer(selected_text):
 
 	if answered_already:
 		return
@@ -50,9 +99,17 @@ func check_answer(index):
 	button_2.disabled = true
 	button_3.disabled = true
 
-	var correct = index == current_question.answer
+	# -----------------------------
+	# VALIDAR RESPUESTA
+	# -----------------------------
+	var correct = selected_text == correct_answer_text
 
 	if correct:
+
+		feedback_label.add_theme_color_override(
+			"font_color",
+			Color.GREEN
+		)
 
 		feedback_label.text = "✅ Correcto"
 
@@ -64,6 +121,12 @@ func check_answer(index):
 
 	else:
 
+		feedback_label.add_theme_color_override(
+			"font_color",
+			Color.RED
+		)
+
+		# SOLO MOSTRAR PISTA
 		feedback_label.text = "❌ " + current_question.hint
 
 		await get_tree().create_timer(2.5).timeout

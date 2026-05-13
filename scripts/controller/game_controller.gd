@@ -476,7 +476,41 @@ func redraw_board():
 # -------------------------------
 func update_turn_label():
 
-	turn_label.text = "TURNO: JUGADOR " + str(current_player)
+	if current_player == 1:
+
+		turn_label.text = "JUGADOR 1"
+
+		turn_label.add_theme_color_override(
+			"font_color",
+			Color("#ff3b3b")
+		)
+
+	else:
+
+		turn_label.text = "JUGADOR 2"
+
+		turn_label.add_theme_color_override(
+			"font_color",
+			Color("#3b82ff")
+		)
+
+	# tamaño grande
+	turn_label.add_theme_font_size_override(
+		"font_size",
+		30
+	)
+
+	# animación pop
+	turn_label.scale = Vector2(1.3, 1.3)
+
+	var tween = create_tween()
+
+	tween.tween_property(
+		turn_label,
+		"scale",
+		Vector2(1,1),
+		0.15
+	)
 
 # -------------------------------
 func spawn_piece_animated(data):

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b20kt2cnskj85"]
 
 [ext_resource type="Script" uid="uid://6kl7nfiw81ah" path="res://scripts/controller/QuizManager.gd" id="1_iuglh"]
+[ext_resource type="FontFile" uid="uid://cwnpy1oypux16" path="res://assets/fonts/Orbitron-Bold.ttf" id="2_kv8c1"]
 
 [node name="QuizManager" type="CanvasLayer" unique_id=1771780837]
 script = ExtResource("1_iuglh")
@@ -23,6 +24,8 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 498.0
 offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_kv8c1")
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -33,6 +36,8 @@ offset_top = 90.0
 offset_right = 394.0
 offset_bottom = 130.0
 theme_override_colors/font_color = Color(0.56078434, 0.023529412, 0.07058824, 1)
+theme_override_fonts/font = ExtResource("2_kv8c1")
+theme_override_font_sizes/font_size = 16
 autowrap_mode = 2
 
 [node name="Button1" type="Button" parent="Panel" unique_id=515961784]
@@ -41,6 +46,8 @@ offset_left = 18.0
 offset_top = 66.0
 offset_right = 122.0
 offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("2_kv8c1")
+theme_override_font_sizes/font_size = 16
 
 [node name="Button2" type="Button" parent="Panel" unique_id=1747915723]
 layout_mode = 0
@@ -48,6 +55,8 @@ offset_left = 18.0
 offset_top = 130.0
 offset_right = 122.0
 offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("2_kv8c1")
+theme_override_font_sizes/font_size = 16
 
 [node name="Button3" type="Button" parent="Panel" unique_id=855685679]
 layout_mode = 0
@@ -55,3 +64,5 @@ offset_left = 18.0
 offset_top = 194.0
 offset_right = 122.0
 offset_bottom = 218.0
+theme_override_fonts/font = ExtResource("2_kv8c1")
+theme_override_font_sizes/font_size = 16
