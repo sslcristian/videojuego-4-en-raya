@@ -5,7 +5,7 @@ const COLS = 7
 
 var board = []
 
-# gravedad: 1 = abajo, -1 = arriba
+
 var gravity = 1
 
 
