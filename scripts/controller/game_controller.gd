@@ -86,8 +86,7 @@ func _ready():
 
 	update_turn_label()
 	start_turn_timer()
-
-# -------------------------------
+	
 func _process(delta):
 
 	if not timer_running or game_over:
@@ -99,9 +98,16 @@ func _process(delta):
 
 		timer_label.text = "Tiempo: 0"
 		timer_running = false
+		if waiting_for_quiz:
+
+			waiting_for_quiz = false
+			can_place_piece = true
+
+			quiz_manager.hide_question()
 
 		show_message("Tiempo agotado!")
-		end_turn()
+
+		await end_turn()
 
 	else:
 
@@ -110,8 +116,6 @@ func _process(delta):
 		# 🔊 sonido cuando quedan 5 segundos
 		if int(turn_time) == 5 and not sfx_timer.playing:
 			sfx_timer.play()
-
-# -------------------------------
 func start_turn_timer():
 
 	turn_time = 30

@@ -134,3 +134,17 @@ func check_answer(selected_text):
 		visible = false
 
 		answered.emit(false)
+func hide_question():
+
+	if not visible:
+		return
+
+	answered_already = true
+
+	button_1.disabled = true
+	button_2.disabled = true
+	button_3.disabled = true
+
+	visible = false
+
+	answered.emit(false)

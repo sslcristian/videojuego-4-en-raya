@@ -45,24 +45,24 @@ layout_mode = 0
 offset_left = 18.0
 offset_top = 66.0
 offset_right = 122.0
-offset_bottom = 90.0
+offset_bottom = 106.0
 theme_override_fonts/font = ExtResource("2_kv8c1")
 theme_override_font_sizes/font_size = 16
 
 [node name="Button2" type="Button" parent="Panel" unique_id=1747915723]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 130.0
+offset_top = 146.0
 offset_right = 122.0
-offset_bottom = 154.0
+offset_bottom = 186.0
 theme_override_fonts/font = ExtResource("2_kv8c1")
 theme_override_font_sizes/font_size = 16
 
 [node name="Button3" type="Button" parent="Panel" unique_id=855685679]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 194.0
+offset_top = 226.0
 offset_right = 122.0
-offset_bottom = 218.0
+offset_bottom = 266.0
 theme_override_fonts/font = ExtResource("2_kv8c1")
 theme_override_font_sizes/font_size = 16
